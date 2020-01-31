@@ -202,7 +202,7 @@ class PlayerOverlayVC: UIViewController {
         let  audioSession = AVAudioSession.sharedInstance()
         do
         {
-            try audioSession.setCategory(AVAudioSessionCategoryPlayback, with: .allowBluetooth)
+			try audioSession.setCategory(AVAudioSession.Category.playback, options: .allowBluetooth)
             try audioSession.setActive(true)
         }
         catch let e
@@ -219,7 +219,7 @@ class PlayerOverlayVC: UIViewController {
     
    
     // Mark: - Hide PlayBarView
-    func hidePlayerBar() {
+    @objc func hidePlayerBar() {
         UIView.animate(withDuration: 0.5, animations: {
             self.playerBarViewHightContraint.constant = 0
             self.volumeSlider.isHidden = true
@@ -238,7 +238,7 @@ class PlayerOverlayVC: UIViewController {
     }
     
     // Mark: - TapGesture
-    func didTapGesture(_ sender: AnyObject) {
+    @objc func didTapGesture(_ sender: AnyObject) {
         if playerBarView.isHidden {
             self.showPlayerBar()
         }else{
